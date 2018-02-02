@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel = "stylesheet"
+          type = "text/css"
+          href = "css/index.css" />
+</head>
+<body>
+<div class="keys">
+    <div class="key" id="A">
+        <kbd>A</kbd>
+    </div>
+    <div class="key" id="D" >
+        <kbd>D</kbd>
+    </div>
+    <div class="key" id="G" >
+        <kbd>G</kbd>
+    </div>
+    <div class="key" id="J" >
+        <kbd>J</kbd>
+    </div>
+    <div class="key" id="L" >
+        <kbd>L</kbd>
+    </div>
+    <div class="key" id="R" >
+        <kbd>R</kbd>
+    </div>
+    <div class="key" id="Y" >
+        <kbd>Y</kbd>
+    </div>
+    <div class="key" id="O" >
+        <kbd>O</kbd>
+    </div>
+</div>
+<audio data-key="A" src="sounds/clap.wav"></audio>
+<audio data-key="D" src="sounds/hihat.wav"></audio>
+<audio data-key="G" src="sounds/kick.wav"></audio>
+<audio data-key="J" src="sounds/openhat.wav"></audio>
+<audio data-key="L" src="sounds/ride.wav"></audio>
+<audio data-key="R" src="sounds/snare.wav"></audio>
+<audio data-key="Y" src="sounds/tom.wav"></audio>
+<audio data-key="O" src="sounds/tink.wav"></audio>
+
+<script>
+
+    function playsound(e) {
+        var id=String.fromCharCode(e.which).toUpperCase();
+        const audio = document.querySelector(`audio[data-key="${id}"]`);
+        console.log(audio);
+
+        if (!audio) return;
+        document.getElementById(id).classList.add("playing");
+        console.log("id"+ id);
+        audio.currentTime = 0;
+        audio.play();
+        setTimeout(function () {
+            document.getElementById(id).classList.remove("playing");
+        },200);
+        
+    }
+
+    window.addEventListener('keydown', playsound);
+
+</script>
+</body>
+</html>
